@@ -2,10 +2,10 @@ package auth
 
 import (
 	"context"
+	"github.com/gula16/hackernews/pkg/jwt"
 	"net/http"
 	"strconv"
 
-	"github.com/gula16/hackernews/internal/pkg/jwt"
 	"github.com/gula16/hackernews/internal/users"
 )
 

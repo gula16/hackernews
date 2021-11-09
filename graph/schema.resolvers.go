@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"github.com/gula16/hackernews/internal/auth"
 	"github.com/gula16/hackernews/internal/links"
-	"github.com/gula16/hackernews/internal/pkg/jwt"
 	"github.com/gula16/hackernews/internal/users"
+	"github.com/gula16/hackernews/pkg/jwt"
 	"strconv"
 
 	"github.com/gula16/hackernews/graph/generated"
