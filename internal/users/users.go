@@ -2,12 +2,13 @@ package users
 
 import (
 	"database/sql"
-	"github.com/glyphack/go-graphql-hackernews/internal/pkg/db/mysql"
-	database "github.com/gula16/hackernews/internal/pkg/db/mysql"
+	_ "database/sql"
+	database "github.com/gula16/hackernews/internal/pkg/db"
 	"golang.org/x/crypto/bcrypt"
 
 	"log"
 )
+
 
 type User struct {
 	ID       string `json:"id"`
@@ -42,7 +43,7 @@ func CheckPasswordHash(password, hash string) bool {
 
 //GetUserIdByUsername check if a user exists in database by given username
 func GetUserIdByUsername(username string) (int, error) {
-	statement, err := database.Db.Prepare("select ID from Users WHERE Username = ?")
+	statement, err := Db.Prepare("select ID from Users WHERE Username = ?")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,9 +80,4 @@ func (user *User) Authenticate() bool {
 
 	return CheckPasswordHash(user.Password, hashedPassword)
 }
-
 //CheckPassword hash compares raw password with it's hashed values
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
-}

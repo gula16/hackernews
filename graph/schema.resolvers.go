@@ -22,10 +22,7 @@ func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) 
 	if user == nil {
 		return &model.Link{}, fmt.Errorf("access denied")
 	}
-	.
-	.
-	.
-	// 2
+	var link links.Link
 	link.User = user
 	linkID := link.Save()
 	grahpqlUser := &model.User{
