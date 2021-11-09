@@ -3,7 +3,7 @@ package users
 import (
 	"database/sql"
 	_ "database/sql"
-	database "github.com/gula16/hackernews/internal/pkg/db"
+	database "github.com/gula16/hackernews/internal/pkg/db/mysql"
 	"golang.org/x/crypto/bcrypt"
 
 	"log"
@@ -43,7 +43,7 @@ func CheckPasswordHash(password, hash string) bool {
 
 //GetUserIdByUsername check if a user exists in database by given username
 func GetUserIdByUsername(username string) (int, error) {
-	statement, err := Db.Prepare("select ID from Users WHERE Username = ?")
+	statement, err := database.Db.Prepare("select ID from Users WHERE Username = ?")
 	if err != nil {
 		log.Fatal(err)
 	}
